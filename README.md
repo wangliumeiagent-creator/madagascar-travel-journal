@@ -2,7 +2,7 @@
 
 10 天静态旅行网页，按日期阅读行程、自然人文知识与路线。当前发布目标为 **GitHub Pages**，无需 npm 安装或构建。
 
-- 计划源码仓库：https://github.com/wangliumeiagent-creator/madagascar-travel-journal （尚未创建，等待公开仓库授权）
+- 源码仓库：https://github.com/wangliumeiagent-creator/madagascar-travel-journal
 - Agent 接手先读 [AGENTS.md](AGENTS.md) 与 [交接文档](docs/HANDOFF.md)。
 - 检查：`node scripts/validate.mjs`
 - 发布：提交后执行 `powershell -File scripts/publish.ps1`。main 保存源码，gh-pages 保存 dist 子树。
