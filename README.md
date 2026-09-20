@@ -1,5 +1,7 @@
 # 马达加斯加旅行读本
 
+每日路线数据与展示位于 `dist/routes.js`。总览底图 `dist/images/itinerary-overview.png` 来自用户提供的旅行社行程图，保留原图署名。每天显示活动区域高亮与地点顺序，均为示意，不是 GPS 轨迹。Google Maps 使用无需 API 密钥的官方 Maps URLs，提供城市间/已知地面段路线以及候选地点搜索；未调用地图图片或嵌入 API，不声称已核实 Google 的实际路况、导航结果或行车时间。酒店、林区和村庄待确认后可细化。
+
 每日内容集中在 `dist/content.js`，页面与样式分别为 `dist/index.html`、`dist/style.css`，日期切换在 `dist/app.js`。无需构建。
 
 后续补充：修改相应日期的 paragraphs、schedule、look 和 sources；将有使用授权的图片放入 dist/images，再在该天 images 数组添加 `{src:"images/文件名.jpg",alt:"画面描述",caption:"说明及署名"}`。这是一份阅读网页，不含在线编辑或上传后台。
