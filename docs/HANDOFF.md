@@ -1,7 +1,9 @@
 # 马达加斯加旅行读本：Agent 交接
 
 ## 目标和现状
-迁移状态（2026-09-20）：用户已明确授权创建公开仓库、公开源码/旅行日期/路线/交接文档及发布 GitHub Pages。公开仓库已创建，账号为 wangliumeiagent-creator。本地验证通过；发布结果以 GitHub Pages API 为准。
+迁移状态（2026-09-20）：用户已明确授权创建公开仓库、公开源码/旅行日期/路线/交接文档及发布 GitHub Pages。仓库已创建，main 为默认源码分支；Pages 来源为 gh-pages 根目录，HTTPS 已启用。首次网页构建状态 built，对应发布提交 0ce23390ab67ff18367dda15dfebafbe3a350233。
+
+在线地址：https://wangliumeiagent-creator.github.io/madagascar-travel-journal/
 
 用户提供 10 天旅行行程，要求以网页按天展示真实背景知识，后续持续补充介绍和图片。已完成全部日期的阅读内容、来源链接、现场观察提示、行程安排、用户提供总览图、每日区域高亮和 Google Maps 链接。页面适配桌面及手机。
 
@@ -52,6 +54,15 @@
 3. 执行 `powershell -File scripts/publish.ps1`，或手动推送 main 再推送 dist 子树。
 4. 用 `gh api repos/wangliumeiagent-creator/madagascar-travel-journal/pages/builds/latest` 检查状态，并用 Pages API 返回的 html_url 验证线上页面和静态资源。
 5. Pages 的来源设置为 gh-pages 分支根目录，HTTPS。普通 main push 不会单独更新网页，必须发布子树。
+
+本机 PowerShell 禁止执行脚本时，不修改全局执行策略。直接逐条运行：
+```powershell
+node scripts/validate.mjs
+git status --short
+git -c 'credential.helper=!gh auth git-credential' push origin HEAD:main
+git -c 'credential.helper=!gh auth git-credential' subtree push --prefix dist origin gh-pages
+```
+仅在验证通过、工作区干净且当前提交是待发布源码时运行推送。已有 gh-pages 分支可能自动启用 Pages，创建 API 返回 409 时先读取现状，不重复创建或破坏配置。
 
 本机受限网络下 gh auth status 可能误报 invalid；在获准的联网执行环境复核，禁止打印 token、读取或提交凭据文件。使用现有 gh 登录和临时 Git credential helper，不修改全局账号设置。
 
